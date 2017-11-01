@@ -1,0 +1,12 @@
+{
+    "images": "img/**/*",
+    "css": "sass/main.scss",
+    "cssFiles": "sass/**/*.scss",
+    "build": "build",
+    "js": {
+        "files": [
+            "js/ready.js"
+        ],
+        "name": "all.js"
+    }
+}

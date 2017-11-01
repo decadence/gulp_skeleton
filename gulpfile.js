@@ -6,22 +6,7 @@ var concat = require("gulp-concat");
 var sourcemaps = require("gulp-sourcemaps");
 var autoprefixer = require("gulp-autoprefixer");
 
-var config = {
-    images: "img/**/*",
-    css: "sass/main.scss",
-    cssFiles: "sass/**/*.scss",
-    build: "build",
-    js: {
-        files: [
-            "js/jcarousellite.min.js",
-            "js/jquery.inview.min.js",
-            "js/jquery.mask.min.js",
-            "js/ready.js",
-            "js/mq.genie.min.js",
-        ],
-        name: "all.js"
-    }
-};
+var config = require("./config.json");
 
 gulp.task("images", function () {
     return gulp.src(config.images)
