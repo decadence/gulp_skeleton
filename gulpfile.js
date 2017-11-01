@@ -21,7 +21,7 @@ gulp.task("css", function () {
         .pipe(sourcemaps.init())
         .pipe(sass({
             outputStyle: "compressed"
-        }))
+        }).on("error", sass.logError))
         .pipe(autoprefixer())
         .pipe(sourcemaps.write())
         .pipe(gulp.dest(config.build));
