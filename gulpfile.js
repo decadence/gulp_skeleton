@@ -57,6 +57,8 @@ gulp.task("clean", function () {
 
 gulp.task("default", ["css", "js"]);
 
+// наблюдение за файлами
+// за картинками не наблюдаем, их достаточно периодически запускать
 gulp.task("watch", function () {
     gulp.watch(config.css.files, ["css"]);
     gulp.watch(config.js.files, ["js"]);
