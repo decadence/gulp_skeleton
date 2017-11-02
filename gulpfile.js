@@ -12,16 +12,16 @@ var config = require("./config.json");
 
 // сжатие изображение с перезаписью изначальных
 gulp.task("images", function () {
-    return gulp.src(config.images)
+    return gulp.src(config.images.files)
         .pipe(imagemin({
             verbose: true
         }))
-        .pipe(gulp.dest(config.imagesBase));
+        .pipe(gulp.dest(config.images.output));
 });
 
 // обработка SASS
 gulp.task("css", function () {
-    return gulp.src(config.css)
+    return gulp.src(config.css.file)
         .pipe(sourcemaps.init())
         .pipe(sass({
             outputStyle: "compressed"
@@ -49,6 +49,6 @@ gulp.task("clean", function () {
 gulp.task("default", ["css", "js"]);
 
 gulp.task("watch", function () {
-    gulp.watch(config.cssFiles, ["css"]);
+    gulp.watch(config.css.files, ["css"]);
     gulp.watch(config.js.files, ["js"]);
 });

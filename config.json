@@ -1,13 +1,17 @@
 {
-    "images": "img/**/*",
-    "imagesBase": "img",
-    "css": "sass/main.scss",
-    "cssFiles": "sass/**/*.scss",
-    "build": "build",
+    "images": {
+        "files": "img/**/*",
+        "output": "img"
+    },
+    "css": {
+        "file": "sass/main.scss",
+        "files": "sass/**/*.scss"
+    },
     "js": {
         "files": [
             "js/ready.js"
         ],
         "name": "all.js"
-    }
+    },
+    "build": "build"
 }
