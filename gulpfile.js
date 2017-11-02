@@ -6,6 +6,15 @@ var concat = require("gulp-concat");
 var sourcemaps = require("gulp-sourcemaps");
 var autoprefixer = require("gulp-autoprefixer");
 var del = require("del");
+var gulpif = require("gulp-if");
+var argv = require('yargs').argv;
+
+// боевой режим
+var production = argv.production === true;
+
+if (production) {
+    console.log("We are on PRODUCTION");
+}
 
 // подключение конфигурации
 var config = require("./config.json");
@@ -22,22 +31,22 @@ gulp.task("images", function () {
 // обработка SASS
 gulp.task("css", function () {
     return gulp.src(config.css.file)
-        .pipe(sourcemaps.init())
+        .pipe(gulpif(!production, sourcemaps.init()))
         .pipe(sass({
             outputStyle: "compressed"
         }).on("error", sass.logError))
         .pipe(autoprefixer())
-        .pipe(sourcemaps.write())
+        .pipe(gulpif(!production, sourcemaps.write()))
         .pipe(gulp.dest(config.build));
 });
 
 // сжатие JS
 gulp.task("js", function () {
     return gulp.src(config.js.files)
-        .pipe(sourcemaps.init())
+        .pipe(gulpif(!production, sourcemaps.init()))
         .pipe(uglify())
         .pipe(concat(config.js.name))
-        .pipe(sourcemaps.write())
+        .pipe(gulpif(!production, sourcemaps.write()))
         .pipe(gulp.dest(config.build));
 });
 
