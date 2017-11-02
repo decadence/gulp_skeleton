@@ -8,6 +8,7 @@ var autoprefixer = require("gulp-autoprefixer");
 var del = require("del");
 var gulpif = require("gulp-if");
 var debug = require("gulp-debug");
+var ttf2woff = require("gulp-ttf2woff");
 var argv = require('yargs').argv;
 
 // боевой режим
@@ -63,6 +64,12 @@ gulp.task("js", function () {
 // удаление папки сборки
 gulp.task("clean", function () {
     del(config.build);
+});
+
+gulp.task("fonts", function () {
+    return gulp.src(config.fonts.files)
+        .pipe(ttf2woff())
+        .pipe(gulp.dest(config.fonts.output));
 });
 
 gulp.task("default", ["css", "js"]);

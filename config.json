@@ -13,5 +13,9 @@
         ],
         "name": "all.js"
     },
+    "fonts": {
+        "files": "fonts/*.ttf",
+        "output": "build/fonts"
+    },
     "build": "build"
 }
