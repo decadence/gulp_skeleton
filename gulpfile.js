@@ -7,6 +7,7 @@ var sourcemaps = require("gulp-sourcemaps");
 var autoprefixer = require("gulp-autoprefixer");
 var del = require("del");
 var gulpif = require("gulp-if");
+var debug = require("gulp-debug");
 var argv = require('yargs').argv;
 
 // боевой режим
@@ -22,6 +23,9 @@ var config = require("./config.json");
 // сжатие изображение с перезаписью изначальных
 gulp.task("images", function () {
     return gulp.src(config.images.files)
+        .pipe(debug({
+            title: "images"
+        }))
         .pipe(imagemin({
             verbose: true
         }))
@@ -31,6 +35,9 @@ gulp.task("images", function () {
 // обработка SASS
 gulp.task("css", function () {
     return gulp.src(config.css.file)
+        .pipe(debug({
+            title: "css"
+        }))
         .pipe(gulpif(!production, sourcemaps.init()))
         .pipe(sass({
             outputStyle: "compressed"
@@ -43,6 +50,9 @@ gulp.task("css", function () {
 // сжатие JS
 gulp.task("js", function () {
     return gulp.src(config.js.files)
+        .pipe(debug({
+            title: "js"
+        }))
         .pipe(gulpif(!production, sourcemaps.init()))
         .pipe(uglify())
         .pipe(concat(config.js.name))
